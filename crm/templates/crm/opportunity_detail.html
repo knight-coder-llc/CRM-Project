@@ -1,0 +1,28 @@
+{% extends 'crm/base.html' %}
+{% block title %}{{ opportunity.name }}{% endblock %}
+{% block content %}
+<div class="flex justify-between items-center" style="margin-bottom: 2rem;">
+    <h1 class="card-title" style="font-size: 1.5rem;">{{ opportunity.name }}</h1>
+    <a href="{% url 'opportunity_update' opportunity.pk %}" class="btn btn-primary">Edit</a>
+</div>
+<div class="card">
+    <div class="card-header">
+        <h3 class="card-title">Details</h3>
+    </div>
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+        <div>
+            <label>Account</label>
+            <div><a href="{% url 'account_detail' opportunity.account.pk %}">{{ opportunity.account.name }}</a></div>
+        </div>
+        <div><label>Amount</label>
+            <div>${{ opportunity.amount }}</div>
+        </div>
+        <div><label>Stage</label>
+            <div><span class="badge badge-{{ opportunity.stage }}">{{ opportunity.get_stage_display }}</span></div>
+        </div>
+        <div><label>Close Date</label>
+            <div>{{ opportunity.close_date }}</div>
+        </div>
+    </div>
+</div>
+{% endblock %}

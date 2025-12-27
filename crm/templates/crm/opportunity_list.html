@@ -1,0 +1,46 @@
+{% extends 'crm/base.html' %}
+
+{% block title %}Opportunities | Django CRM{% endblock %}
+
+{% block content %}
+<div class="flex justify-between items-center" style="margin-bottom: 2rem;">
+    <h1 class="card-title" style="font-size: 1.5rem;">Opportunities</h1>
+    <a href="{% url 'opportunity_create' %}" class="btn btn-primary">Add Opportunity</a>
+</div>
+
+<div class="card">
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Account</th>
+                    <th>Stage</th>
+                    <th>Amount</th>
+                    <th>Close Date</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for opp in opportunities %}
+                <tr>
+                    <td><a href="{% url 'opportunity_detail' opp.pk %}">{{ opp.name }}</a></td>
+                    <td><a href="{% url 'account_detail' opp.account.pk %}">{{ opp.account.name }}</a></td>
+                    <td><span class="badge badge-{{ opp.stage }}">{{ opp.get_stage_display }}</span></td>
+                    <td>${{ opp.amount }}</td>
+                    <td>{{ opp.close_date }}</td>
+                    <td>
+                        <a href="{% url 'opportunity_update' opp.pk %}" class="btn btn-secondary"
+                            style="padding: 0.25rem 0.5rem; font-size: 0.75rem;">Edit</a>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="6" style="text-align: center;">No opportunities found.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

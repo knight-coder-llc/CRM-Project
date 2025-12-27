@@ -1,0 +1,34 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Django CRM{% endblock %}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'crm/css/style.css' %}">
+</head>
+<body>
+    <div class="app-container">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                DjangoCRM
+            </div>
+            <nav>
+                <a href="{% url 'dashboard' %}" class="nav-link {% if request.resolver_match.url_name == 'dashboard' %}active{% endif %}">Dashboard</a>
+                <a href="{% url 'account_list' %}" class="nav-link {% if 'account' in request.path %}active{% endif %}">Accounts</a>
+                <a href="{% url 'contact_list' %}" class="nav-link {% if 'contact' in request.path %}active{% endif %}">Contacts</a>
+                <a href="{% url 'lead_list' %}" class="nav-link {% if 'lead' in request.path %}active{% endif %}">Leads</a>
+                <a href="{% url 'opportunity_list' %}" class="nav-link {% if 'opportunity' in request.path %}active{% endif %}">Opportunities</a>
+            </nav>
+        </aside>
+        
+        <main class="main-content">
+            {% block content %}
+            {% endblock %}
+        </main>
+    </div>
+</body>
+</html>

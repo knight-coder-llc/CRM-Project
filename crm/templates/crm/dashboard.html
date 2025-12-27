@@ -1,0 +1,64 @@
+{% extends 'crm/base.html' %}
+
+{% block title %}Dashboard | Django CRM{% endblock %}
+
+{% block content %}
+<div class="flex justify-between items-center" style="margin-bottom: 2rem;">
+    <h1 class="card-title" style="font-size: 1.5rem;">Dashboard</h1>
+    <a href="{% url 'lead_create' %}" class="btn btn-primary">New Lead</a>
+</div>
+
+<div class="stats-grid">
+    <div class="stat-card">
+        <div class="stat-label">Total Accounts</div>
+        <div class="stat-value">{{ total_accounts }}</div>
+    </div>
+    <div class="stat-card">
+        <div class="stat-label">Active Contacts</div>
+        <div class="stat-value">{{ total_contacts }}</div>
+    </div>
+    <div class="stat-card">
+        <div class="stat-label">Total Leads</div>
+        <div class="stat-value">{{ total_leads }}</div>
+    </div>
+    <div class="stat-card">
+        <div class="stat-label">Pipeline Value</div>
+        <div class="stat-value">${{ pipeline_value|floatformat:2 }}</div>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-header">
+        <h2 class="card-title">Recent Leads</h2>
+        <a href="{% url 'lead_list' %}" class="btn btn-secondary">View All</a>
+    </div>
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Status</th>
+                    <th>Source</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for lead in recent_leads %}
+                <tr>
+                    <td><a href="{% url 'lead_detail' lead.pk %}">{{ lead.first_name }} {{ lead.last_name }}</a></td>
+                    <td>{{ lead.email }}</td>
+                    <td><span class="badge badge-{{ lead.status }}">{{ lead.get_status_display }}</span></td>
+                    <td>{{ lead.get_source_display }}</td>
+                    <td>{{ lead.created_at|date:"M d, Y" }}</td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="5" style="text-align: center; color: var(--text-secondary);">No leads found.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

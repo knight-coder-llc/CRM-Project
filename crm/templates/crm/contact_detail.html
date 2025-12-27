@@ -1,0 +1,28 @@
+{% extends 'crm/base.html' %}
+{% block title %}{{ contact.first_name }} {{ contact.last_name }}{% endblock %}
+{% block content %}
+<div class="flex justify-between items-center" style="margin-bottom: 2rem;">
+    <h1 class="card-title" style="font-size: 1.5rem;">{{ contact.first_name }} {{ contact.last_name }}</h1>
+    <a href="{% url 'contact_update' contact.pk %}" class="btn btn-primary">Edit</a>
+</div>
+<div class="card">
+    <div class="card-header">
+        <h3 class="card-title">Details</h3>
+    </div>
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+        <div>
+            <label>Account</label>
+            <div><a href="{% url 'account_detail' contact.account.pk %}">{{ contact.account.name }}</a></div>
+        </div>
+        <div><label>Role</label>
+            <div>{{ contact.role }}</div>
+        </div>
+        <div><label>Email</label>
+            <div>{{ contact.email }}</div>
+        </div>
+        <div><label>Phone</label>
+            <div>{{ contact.phone }}</div>
+        </div>
+    </div>
+</div>
+{% endblock %}

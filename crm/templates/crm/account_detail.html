@@ -1,0 +1,87 @@
+{% extends 'crm/base.html' %}
+
+{% block title %}{{ account.name }} | Django CRM{% endblock %}
+
+{% block content %}
+<div class="flex justify-between items-center" style="margin-bottom: 2rem;">
+    <h1 class="card-title" style="font-size: 1.5rem;">{{ account.name }}</h1>
+    <a href="{% url 'account_update' account.pk %}" class="btn btn-primary">Edit</a>
+</div>
+
+<div class="grid" style="display: grid; grid-template-columns: 2fr 1fr; gap: 2rem;">
+    <div>
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">Details</h3>
+            </div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                <div>
+                    <label>Industry</label>
+                    <div>{{ account.get_industry_display }}</div>
+                </div>
+                <div>
+                    <label>Phone</label>
+                    <div>{{ account.phone }}</div>
+                </div>
+                <div>
+                    <label>Website</label>
+                    <div><a href="{{ account.website }}">{{ account.website }}</a></div>
+                </div>
+                <div>
+                    <label>Address</label>
+                    <div>{{ account.address }}</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">Contacts</h3>
+                <a href="{% url 'contact_create' %}?account={{ account.pk }}" class="btn btn-secondary btn-sm">Add
+                    Contact</a>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Role</th>
+                        <th>Email</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for contact in account.contacts.all %}
+                    <tr>
+                        <td>{{ contact.first_name }} {{ contact.last_name }}</td>
+                        <td>{{ contact.role }}</td>
+                        <td>{{ contact.email }}</td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="3">No contacts associated.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div>
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">Opportunities</h3>
+            </div>
+            {% for opp in account.opportunities.all %}
+            <div style="border-bottom: 1px solid var(--border-color); padding: 0.5rem 0;">
+                <div style="font-weight: 600;">{{ opp.name }}</div>
+                <div class="flex justify-between text-sm text-gray">
+                    <span>${{ opp.amount }}</span>
+                    <span>{{ opp.get_stage_display }}</span>
+                </div>
+            </div>
+            {% empty %}
+            <div>No opportunities.</div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

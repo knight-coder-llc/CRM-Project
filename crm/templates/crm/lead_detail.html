@@ -1,0 +1,30 @@
+{% extends 'crm/base.html' %}
+{% block title %}{{ lead.first_name }} {{ lead.last_name }}{% endblock %}
+{% block content %}
+<div class="flex justify-between items-center" style="margin-bottom: 2rem;">
+    <h1 class="card-title" style="font-size: 1.5rem;">{{ lead.first_name }} {{ lead.last_name }}</h1>
+    <a href="{% url 'lead_update' lead.pk %}" class="btn btn-primary">Edit</a>
+</div>
+<div class="card">
+    <div class="card-header">
+        <h3 class="card-title">Details</h3>
+    </div>
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+        <div><label>Company</label>
+            <div>{{ lead.company }}</div>
+        </div>
+        <div><label>Status</label>
+            <div><span class="badge badge-{{ lead.status }}">{{ lead.get_status_display }}</span></div>
+        </div>
+        <div><label>Email</label>
+            <div>{{ lead.email }}</div>
+        </div>
+        <div><label>Phone</label>
+            <div>{{ lead.phone }}</div>
+        </div>
+        <div><label>Source</label>
+            <div>{{ lead.get_source_display }}</div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends 'crm/base.html' %}
+
+{% block title %}Accounts | Django CRM{% endblock %}
+
+{% block content %}
+<div class="flex justify-between items-center" style="margin-bottom: 2rem;">
+    <h1 class="card-title" style="font-size: 1.5rem;">Accounts</h1>
+    <a href="{% url 'account_create' %}" class="btn btn-primary">Add Account</a>
+</div>
+
+<div class="card">
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Nam</th>
+                    <th>Industry</th>
+                    <th>Phone</th>
+                    <th>Website</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for acc in accounts %}
+                <tr>
+                    <td><a href="{% url 'account_detail' acc.pk %}">{{ acc.name }}</a></td>
+                    <td>{{ acc.get_industry_display }}</td>
+                    <td>{{ acc.phone }}</td>
+                    <td><a href="{{ acc.website }}">{{ acc.website }}</a></td>
+                    <td>
+                        <a href="{% url 'account_update' acc.pk %}" class="btn btn-secondary"
+                            style="padding: 0.25rem 0.5rem; font-size: 0.75rem;">Edit</a>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="5" style="text-align: center; color: var(--text-secondary);">No accounts found.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

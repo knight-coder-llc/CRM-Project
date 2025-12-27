@@ -1,0 +1,47 @@
+{% extends 'crm/base.html' %}
+
+{% block title %}Contacts | Django CRM{% endblock %}
+
+{% block content %}
+<div class="flex justify-between items-center" style="margin-bottom: 2rem;">
+    <h1 class="card-title" style="font-size: 1.5rem;">Contacts</h1>
+    <a href="{% url 'contact_create' %}" class="btn btn-primary">Add Contact</a>
+</div>
+
+<div class="card">
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Account</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Role</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for contact in contacts %}
+                <tr>
+                    <td><a href="{% url 'contact_detail' contact.pk %}">{{ contact.first_name }} {{ contact.last_name
+                            }}</a></td>
+                    <td><a href="{% url 'account_detail' contact.account.pk %}">{{ contact.account.name }}</a></td>
+                    <td>{{ contact.email }}</td>
+                    <td>{{ contact.phone }}</td>
+                    <td>{{ contact.role }}</td>
+                    <td>
+                        <a href="{% url 'contact_update' contact.pk %}" class="btn btn-secondary"
+                            style="padding: 0.25rem 0.5rem; font-size: 0.75rem;">Edit</a>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="6" style="text-align: center;">No contacts found.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

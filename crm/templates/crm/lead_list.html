@@ -1,0 +1,46 @@
+{% extends 'crm/base.html' %}
+
+{% block title %}Leads | Django CRM{% endblock %}
+
+{% block content %}
+<div class="flex justify-between items-center" style="margin-bottom: 2rem;">
+    <h1 class="card-title" style="font-size: 1.5rem;">Leads</h1>
+    <a href="{% url 'lead_create' %}" class="btn btn-primary">Add Lead</a>
+</div>
+
+<div class="card">
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Status</th>
+                    <th>Company</th>
+                    <th>Email</th>
+                    <th>Source</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for lead in leads %}
+                <tr>
+                    <td><a href="{% url 'lead_detail' lead.pk %}">{{ lead.first_name }} {{ lead.last_name }}</a></td>
+                    <td><span class="badge badge-{{ lead.status }}">{{ lead.get_status_display }}</span></td>
+                    <td>{{ lead.company }}</td>
+                    <td>{{ lead.email }}</td>
+                    <td>{{ lead.get_source_display }}</td>
+                    <td>
+                        <a href="{% url 'lead_update' lead.pk %}" class="btn btn-secondary"
+                            style="padding: 0.25rem 0.5rem; font-size: 0.75rem;">Edit</a>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="6" style="text-align: center;">No leads found.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
