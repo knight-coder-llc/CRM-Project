@@ -29,9 +29,11 @@
                     <td>{{ lead.company }}</td>
                     <td>{{ lead.email }}</td>
                     <td>{{ lead.get_source_display }}</td>
-                    <td>
+                    <td style="display: flex; gap: 0.5rem;">
                         <a href="{% url 'lead_update' lead.pk %}" class="btn btn-secondary"
                             style="padding: 0.25rem 0.5rem; font-size: 0.75rem;">Edit</a>
+                        <a href="{% url 'lead_delete' lead.pk %}" class="btn btn-primary"
+                            style="padding: 0.25rem 0.5rem; font-size: 0.75rem; background-color: #dc2626;">Delete</a>
                     </td>
                 </tr>
                 {% empty %}

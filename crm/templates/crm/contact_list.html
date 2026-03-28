@@ -24,15 +24,16 @@
             <tbody>
                 {% for contact in contacts %}
                 <tr>
-                    <td><a href="{% url 'contact_detail' contact.pk %}">{{ contact.first_name }} {{ contact.last_name
-                            }}</a></td>
+                    <td><a href="{% url 'contact_detail' contact.pk %}">{{ contact.first_name }} {{ contact.last_name }}</a></td>
                     <td><a href="{% url 'account_detail' contact.account.pk %}">{{ contact.account.name }}</a></td>
                     <td>{{ contact.email }}</td>
                     <td>{{ contact.phone }}</td>
                     <td>{{ contact.role }}</td>
-                    <td>
+                    <td style="display: flex; gap: 0.5rem;">
                         <a href="{% url 'contact_update' contact.pk %}" class="btn btn-secondary"
                             style="padding: 0.25rem 0.5rem; font-size: 0.75rem;">Edit</a>
+                        <a href="{% url 'contact_delete' contact.pk %}" class="btn btn-primary"
+                            style="padding: 0.25rem 0.5rem; font-size: 0.75rem; background-color: #dc2626;">Delete</a>
                     </td>
                 </tr>
                 {% empty %}

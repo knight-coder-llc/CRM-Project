@@ -27,9 +27,11 @@
                     <td>{{ acc.get_industry_display }}</td>
                     <td>{{ acc.phone }}</td>
                     <td><a href="{{ acc.website }}">{{ acc.website }}</a></td>
-                    <td>
+                    <td style="display: flex; gap: 0.5rem;">
                         <a href="{% url 'account_update' acc.pk %}" class="btn btn-secondary"
                             style="padding: 0.25rem 0.5rem; font-size: 0.75rem;">Edit</a>
+                        <a href="{% url 'account_delete' acc.pk %}" class="btn btn-primary"
+                            style="padding: 0.25rem 0.5rem; font-size: 0.75rem; background-color: #dc2626;">Delete</a>
                     </td>
                 </tr>
                 {% empty %}

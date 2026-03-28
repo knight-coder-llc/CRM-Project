@@ -29,9 +29,11 @@
                     <td><span class="badge badge-{{ opp.stage }}">{{ opp.get_stage_display }}</span></td>
                     <td>${{ opp.amount }}</td>
                     <td>{{ opp.close_date }}</td>
-                    <td>
+                    <td style="display: flex; gap: 0.5rem;">
                         <a href="{% url 'opportunity_update' opp.pk %}" class="btn btn-secondary"
                             style="padding: 0.25rem 0.5rem; font-size: 0.75rem;">Edit</a>
+                        <a href="{% url 'opportunity_delete' opp.pk %}" class="btn btn-primary"
+                            style="padding: 0.25rem 0.5rem; font-size: 0.75rem; background-color: #dc2626;">Delete</a>
                     </td>
                 </tr>
                 {% empty %}

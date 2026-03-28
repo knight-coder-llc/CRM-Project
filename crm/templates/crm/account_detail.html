@@ -5,7 +5,10 @@
 {% block content %}
 <div class="flex justify-between items-center" style="margin-bottom: 2rem;">
     <h1 class="card-title" style="font-size: 1.5rem;">{{ account.name }}</h1>
-    <a href="{% url 'account_update' account.pk %}" class="btn btn-primary">Edit</a>
+    <div style="display: flex; gap: 0.5rem;">
+        <a href="{% url 'account_update' account.pk %}" class="btn btn-primary">Edit</a>
+        <a href="{% url 'account_delete' account.pk %}" class="btn btn-primary" style="background-color: #dc2626;">Delete</a>
+    </div>
 </div>
 
 <div class="grid" style="display: grid; grid-template-columns: 2fr 1fr; gap: 2rem;">

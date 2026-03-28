@@ -1,0 +1,15 @@
+{% extends 'crm/base.html' %}
+{% block title %}Delete Account{% endblock %}
+{% block content %}
+<div class="card" style="max-width: 600px; margin: 0 auto; text-align: center;">
+    <h1 class="card-title" style="color: #dc2626; margin-bottom: 1rem;">Confirm Deletion</h1>
+    <p style="margin-bottom: 2rem;">Are you sure you want to delete the account: <strong>{{ object.name }}</strong>? This action cannot be undone and will delete all associated contacts and opportunities.</p>
+    <form method="post">
+        {% csrf_token %}
+        <div style="display: flex; justify-content: center; gap: 1rem;">
+            <a href="{% url 'account_list' %}" class="btn btn-secondary">Cancel</a>
+            <button type="submit" class="btn btn-primary" style="background-color: #dc2626;">Yes, Delete</button>
+        </div>
+    </form>
+</div>
+{% endblock %}

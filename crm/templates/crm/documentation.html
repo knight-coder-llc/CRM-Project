@@ -1,0 +1,93 @@
+{% extends 'crm/base.html' %}
+
+{% block title %}Documentation | Django CRM{% endblock %}
+
+{% block content %}
+<div class="card" style="padding: 2rem;">
+    <h1 style="margin-bottom: 1rem; font-size: 2rem;">CRM Professional User Guide</h1>
+
+    <p style="margin-bottom: 2rem; color: #666; font-size: 1.1rem; line-height: 1.6;">
+        Welcome to the Quick-Start User Guide for your new Customer Relationship Management (CRM) system. This guide will help you understand the core concepts and the recommended business processes so you and your team can get the most value out of the platform.
+    </p>
+
+    <h2 style="margin-top: 2rem; margin-bottom: 1rem; border-bottom: 2px solid #eee; padding-bottom: 0.5rem; font-size: 1.5rem;">1. Core Modules (The Data Structure)</h2>
+    <p style="margin-bottom: 1rem; line-height: 1.6;">The CRM system is divided into four main entities that represent the complete sales lifecycle:</p>
+
+    <h3 style="margin-bottom: 0.5rem; font-size: 1.25rem;">Leads</h3>
+    <p style="margin-bottom: 0.5rem; line-height: 1.6;">A <strong>Lead</strong> represents an individual or company that has shown interest in your product or service but has not yet been qualified as a genuine sales prospect.</p>
+    <ul style="margin-bottom: 1.5rem; padding-left: 1.5rem; list-style-type: disc; line-height: 1.6;">
+        <li><strong>Key Fields</strong>: Name, Email, Company, Status (New, Contacted, Qualified, Lost), Source (Website, Referral, Ad).</li>
+        <li><strong>Business Use</strong>: The top of your sales funnel. All marketing initiatives, cold calls, and inbound inquiries should start here.</li>
+    </ul>
+
+    <h3 style="margin-bottom: 0.5rem; font-size: 1.25rem;">Accounts</h3>
+    <p style="margin-bottom: 0.5rem; line-height: 1.6;">An <strong>Account</strong> represents a business entity or organization you are doing business with (or intend to).</p>
+    <ul style="margin-bottom: 1.5rem; padding-left: 1.5rem; list-style-type: disc; line-height: 1.6;">
+        <li><strong>Key Fields</strong>: Company Name, Industry (Tech, Finance, Healthcare, Retail), Website, Phone, Address.</li>
+        <li><strong>Business Use</strong>: The central hub for communication. Accounts link your contacts (people) and opportunities (deals) together under one corporate roof.</li>
+    </ul>
+
+    <h3 style="margin-bottom: 0.5rem; font-size: 1.25rem;">Contacts</h3>
+    <p style="margin-bottom: 0.5rem; line-height: 1.6;">A <strong>Contact</strong> is an individual person who works at one of your Accounts.</p>
+    <ul style="margin-bottom: 1.5rem; padding-left: 1.5rem; list-style-type: disc; line-height: 1.6;">
+        <li><strong>Key Fields</strong>: First/Last Name, Account affiliation, Email, Phone, Role/Job Title.</li>
+        <li><strong>Business Use</strong>: The people you build relationships with. Always attach your contacts to their parent account so your team knows who is who.</li>
+    </ul>
+
+    <h3 style="margin-bottom: 0.5rem; font-size: 1.25rem;">Opportunities</h3>
+    <p style="margin-bottom: 0.5rem; line-height: 1.6;">An <strong>Opportunity</strong> represents a potential sale or deal with an Account.</p>
+    <ul style="margin-bottom: 2rem; padding-left: 1.5rem; list-style-type: disc; line-height: 1.6;">
+        <li><strong>Key Fields</strong>: Deal Name, Account (associated company), Deal Amount ($), Stage, Expected Close Date.</li>
+        <li><strong>Business Use</strong>: The core of your revenue tracking. By managing opportunities effectively, you can forecast future revenue accurately via the Dashboard.</li>
+    </ul>
+
+    <h2 style="margin-top: 2rem; margin-bottom: 1rem; border-bottom: 2px solid #eee; padding-bottom: 0.5rem; font-size: 1.5rem;">2. Recommended Sales Workflow</h2>
+    <p style="margin-bottom: 1rem; line-height: 1.6;">To maintain a clean and reliable CRM, follow these best practices for moving a potential client through the funnel.</p>
+
+    <h3 style="margin-bottom: 0.5rem; font-size: 1.25rem;">Step 1: Capture the Lead</h3>
+    <p style="margin-bottom: 1.5rem; line-height: 1.6;">When someone fills out a contact form or calls your business, enter their information as a <strong>Lead</strong>. Ensure you track the <code>Source</code> so your marketing team knows which channels are generating interest.</p>
+
+    <h3 style="margin-bottom: 0.5rem; font-size: 1.25rem;">Step 2: Nurture & Qualify</h3>
+    <p style="margin-bottom: 0.5rem; line-height: 1.6;">Move the Lead through the <code>Status</code> pipeline: <strong>New &rarr; Contacted &rarr; Qualified</strong>.</p>
+    <ul style="margin-bottom: 1.5rem; padding-left: 1.5rem; list-style-type: disc; line-height: 1.6;">
+        <li>If a Lead decides they aren't interested, mark them as <strong>Lost</strong>.</li>
+        <li>If a Lead expresses genuine intent to buy, mark them as <strong>Qualified</strong>.</li>
+    </ul>
+
+    <h3 style="margin-bottom: 0.5rem; font-size: 1.25rem;">Step 3: Convert to an Account & Contact</h3>
+    <p style="margin-bottom: 0.5rem; line-height: 1.6;">Once a Lead is <strong>Qualified</strong>, they graduate into real relationships:</p>
+    <ol style="margin-bottom: 1.5rem; padding-left: 1.5rem; list-style-type: decimal; line-height: 1.6;">
+        <li>Create an <strong>Account</strong> for the company they work for.</li>
+        <li>Create a <strong>Contact</strong> for the individual, and link it to the newly created Account.</li>
+    </ol>
+
+    <h3 style="margin-bottom: 0.5rem; font-size: 1.25rem;">Step 4: Track the Deal</h3>
+    <p style="margin-bottom: 0.5rem; line-height: 1.6;">Now that the Account exists, create an <strong>Opportunity</strong> under that account to represent the potential revenue. Update the <code>Stage</code> as negotiations progress:</p>
+    <ul style="margin-bottom: 1.5rem; padding-left: 1.5rem; list-style-type: disc; line-height: 1.6;">
+        <li><strong>Prospecting</strong>: Initial discovery and pitching.</li>
+        <li><strong>Negotiation</strong>: Discussing pricing, terms, or sending a proposal.</li>
+        <li><strong>Closed Won</strong>: The document was signed. Revenue is earned!</li>
+        <li><strong>Closed Lost</strong>: The deal fell through.</li>
+    </ul>
+
+    <h3 style="margin-bottom: 0.5rem; font-size: 1.25rem;">Step 5: Review the Dashboard</h3>
+    <p style="margin-bottom: 2rem; line-height: 1.6;">Check the <strong>Dashboard</strong> frequently. It aggregates vital metrics like Total Pipeline Value and tracks your team's overall volume of active leads, accounts, and opportunities.</p>
+
+    <h2 style="margin-top: 2rem; margin-bottom: 1rem; border-bottom: 2px solid #eee; padding-bottom: 0.5rem; font-size: 1.5rem;">3. Best Practices for Your Team</h2>
+
+    <div style="background-color: #e3f2fd; padding: 1rem; border-left: 4px solid #1976d2; margin-bottom: 1rem; border-radius: 4px; line-height: 1.5;">
+        <strong style="color: #1565c0; font-size: 1.1rem; display: block; margin-bottom: 0.25rem;">TIP: Keep Data Clean</strong>
+        A CRM is only as good as the data inside it. Be diligent about updating Opportunity stages and filling out all fields (like Phone, Industry, and Email). Avoid creating duplicate Accounts for the same company.
+    </div>
+
+    <div style="background-color: #fff3e0; padding: 1rem; border-left: 4px solid #f57c00; margin-bottom: 1rem; border-radius: 4px; line-height: 1.5;">
+        <strong style="color: #e65100; font-size: 1.1rem; display: block; margin-bottom: 0.25rem;">IMPORTANT: Use Close Dates Strategically</strong>
+        Set realistic <code>close_date</code> estimates on your Opportunities. This is critical for predicting when revenue will actually hit your business's bank accounts.
+    </div>
+
+    <div style="background-color: #ffebee; padding: 1rem; border-left: 4px solid #d32f2f; margin-bottom: 1rem; border-radius: 4px; line-height: 1.5;">
+        <strong style="color: #c62828; font-size: 1.1rem; display: block; margin-bottom: 0.25rem;">WARNING: Don't skip the Lead process</strong>
+        It might be tempting to immediately enter everyone as an "Account," but treating unqualified inquiries as Leads helps keep your main Account list exclusively for real, qualified partners.
+    </div>
+</div>
+{% endblock %}
